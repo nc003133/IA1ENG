@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>IA1 Literary Article</title>
+        <link href="IMDBstyle.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <script>
+            window.addEventListener('scroll', scrollevent);
+            function scrollevent(){
+                //if (document.getElementById("title").getBoundingClientRect().bottom > 0){
+                    let scrollY = window.scrollY;
+                    let title = document.getElementById("title").style;
+                    title.marginLeft = (10 - scrollY * 0.1).toString() + '%';
+                    title.marginBottom = (scrollY * 0.5).toString() + 'px';
+                    console.log("scrolling...");
+                //}
+            }
+        </script>
+        <style>
+            body{
+                margin-left: 0;
+                margin-right: 0;
+            }
+            h1.title{
+                color: #000;
+                text-align: left;
+                margin-left: 10%;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                font-size: 75pt;
+                font-family: 'Roboto Slab', serif;
+                border-top: 64px solid #FFF;
+                border-bottom: 64px solid #FFF;
+            }
+        </style>
+        <h1 class="title" id="title">
+            “There's nothing <br>like Love for making <br>you miserable”
+        </h1>
+        <style>
+            div.image-divider{
+                height: 350pt;
+                width: 100%;
+                background-attachment: fixed;
+                background-size: cover;
+                background-position: center;
+            }
+        </style>
+        <div class="image-divider" style="background-image:url('alison-courtney.jpg')" id="first-divider" style="height:467px"></div>
+        <div class="sticky-header">
+            <style>
+                div.sticky-header{
+                    position: sticky;
+                    width: 100%;
+                    height: 50pt;
+                    background-color: #FFFFFFC0;
+                    top: 0;
+                    backdrop-filter: blur(5px);
+                }
+                div.navigation{
+                    display: grid;
+                    grid-template-columns: auto auto auto auto auto;
+                    position: relative;
+                    margin-left: 20%;
+                    margin-right: 20%;
+                    top: 50%;
+                    height: 30pt;
+                    transform: translate(0, -50%);
+                }
+                div.nav-item{
+                    font-size: 15pt;
+                    font-family: 'Roboto', sans-serif;         
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #000;
+                    cursor: pointer;
+                }
+                div.body-text{
+                    font-size: 15pt;
+                    font-family: 'Roboto', sans-serif;
+                    margin-left: 15%;
+                    margin-right: 15%;
+                    margin-top: 20pt;
+                    margin-bottom: 50pt;
+                    text-align: justify;
+                }
+            </style>
+            <div class="navigation">
+                <script>
+                    let currentPage = 2
+                    function onmouseoversticky(navitem){
+                        console.log("MOUSEOVER: " + navitem)
+                        $("#" + navitem).animate({
+                            color: '#FF7417'
+                        }, 500);
+                    }
+                    function onmouseoutsticky(navitem){
+                        console.log("MOUSEOUT: " + navitem)
+                        $("#" + navitem).animate({
+                            color: '#000000'
+                        }, 500);
+                    }
+                    function onclicksticky(navitem){
+                        console.log("CLICK: " + navitem)
+                        if(navitem == 'About Media Texts'){
+                            document.getElementById("abt-met").style.display                = "block";
+                            document.getElementById("lit-art").style.display                = "none";
+                            document.getElementById("abt-aut").style.display                = "none";
+                            document.getElementById("abt-me").style.display                 = "none";
+                            document.getElementById("About Media Texts").style.fontWeight   = "400";
+                            document.getElementById("Literary Article").style.fontWeight    = "300";
+                            document.getElementById("About Authors").style.fontWeight       = "300";
+                            document.getElementById("About Me").style.fontWeight            = "300";
+                            document.getElementById("Annotated Texts").style.fontWeight     = "300";
+                        }
+                        if(navitem == 'Literary Article'){
+                            document.getElementById("abt-met").style.display                = "none";
+                            document.getElementById("lit-art").style.display                = "block";
+                            document.getElementById("abt-aut").style.display                = "none";
+                            document.getElementById("abt-me").style.display                 = "none";
+                            document.getElementById("About Media Texts").style.fontWeight   = "300";
+                            document.getElementById("Literary Article").style.fontWeight    = "400";
+                            document.getElementById("About Authors").style.fontWeight       = "300";
+                            document.getElementById("About Me").style.fontWeight            = "300";
+                            document.getElementById("Annotated Texts").style.fontWeight     = "300";
+                        }
+                        if(navitem == 'About Authors'){
+                            document.getElementById("abt-met").style.display                = "none";
+                            document.getElementById("lit-art").style.display                = "none";
+                            document.getElementById("abt-aut").style.display                = "block";
+                            document.getElementById("abt-me").style.display                 = "none";
+                            document.getElementById("About Media Texts").style.fontWeight   = "300";
+                            document.getElementById("Literary Article").style.fontWeight    = "300";
+                            document.getElementById("About Authors").style.fontWeight       = "400";
+                            document.getElementById("About Me").style.fontWeight            = "300";
+                            document.getElementById("Annotated Texts").style.fontWeight     = "300";
+                        }
+                        if(navitem == 'About Me'){
+                            document.getElementById("abt-met").style.display                = "none";
+                            document.getElementById("lit-art").style.display                = "none";
+                            document.getElementById("abt-aut").style.display                = "none";
+                            document.getElementById("abt-me").style.display                 = "block";
+                            document.getElementById("About Media Texts").style.fontWeight   = "300";
+                            document.getElementById("Literary Article").style.fontWeight    = "300";
+                            document.getElementById("About Authors").style.fontWeight       = "300";
+                            document.getElementById("About Me").style.fontWeight            = "400";
+                            document.getElementById("Annotated Texts").style.fontWeight     = "300";
+                        }
+                        if(navitem == 'Annotated Texts'){
+                            document.getElementById("abt-met").style.display                = "none";
+                            document.getElementById("lit-art").style.display                = "none";
+                            document.getElementById("abt-aut").style.display                = "none";
+                            document.getElementById("abt-me").style.display                 = "none";
+                            document.getElementById("About Media Texts").style.fontWeight   = "300";
+                            document.getElementById("Literary Article").style.fontWeight    = "300";
+                            document.getElementById("About Authors").style.fontWeight       = "300";
+                            document.getElementById("About Me").style.fontWeight            = "300";
+                            document.getElementById("Annotated Texts").style.fontWeight     = "400";
+                        }
+                    }
+                </script>
+                <div class="nav-item" id="About Authors" style="border-right:1px solid #000;font-weight:300;" onmouseover="onmouseoversticky('About Authors')" onmouseout="onmouseoutsticky('About Authors')" onclick="onclicksticky('About Authors')">About Creators</div>
+                <div class="nav-item" id="About Media Texts" style="border-right:1px solid #000;font-weight:300;" onmouseover="onmouseoversticky('About Media Texts')" onmouseout="onmouseoutsticky('About Media Texts')" onclick="onclicksticky('About Media Texts')">About Media Texts</div>
+                <div class="nav-item" id="Literary Article" style="border-right:1px solid #000;font-weight:400;" onmouseover="onmouseoversticky('Literary Article')" onmouseout="onmouseoutsticky('Literary Article')" onclick="onclicksticky('Literary Article')">Literary Article</div>
+                <div class="nav-item" id="Annotated Texts" style="border-right:1px solid #000;font-weight:300;" onmouseover="onmouseoversticky('Annotated Texts')" onmouseout="onmouseoutsticky('Annotated Texts')" onclick="onclicksticky('Annotated Texts')">Annotated Texts</div>
+                <div class="nav-item" id="About Me" style="font-weight:300;" onmouseover="onmouseoversticky('About Me')" onmouseout="onmouseoutsticky('About Me')" onclick="onclicksticky('About Me')">About Me</div>
+            </div>
+        </div>
+        <div id="abt-met">
+            <style>
+                div#abt-met{
+                    display: none;
+                }
+                svg#home_img{
+                    margin-left: 15%;
+                }
+                div.IMDbRip{
+                    padding-top: 50pt;
+                    padding-bottom: 50pt;
+                    background-color: rgb(31, 31, 31);
+                }
+                img#IMDbIMG{
+                    margin-top: 20pt;
+                    margin-left: 20%;
+                    margin-right: 20%;
+                    width: 60%;
+                }
+                img#YIIMG{
+                    width: 100%;
+                }
+            </style>
+            <h1>
+                About Media Texts
+            </h1>
+            <div class="image-divider" style="background-image:url('thumb-1920-782847.jpg')"></div>
+            <div class="IMDbRip">
+                <svg id="home_img" class="ipc-logo" xmlns="http://www.w3.org/2000/svg" width="128" height="64" viewBox="0 0 64 32" version="1.1"><g fill="#F5C518"><rect x="0" y="0" width="100%" height="100%" rx="4"></rect></g><g transform="translate(8.000000, 7.000000)" fill="#000000" fill-rule="nonzero"><polygon points="0 18 5 18 5 0 0 0"></polygon><path d="M15.6725178,0 L14.5534833,8.40846934 L13.8582008,3.83502426 C13.65661,2.37009263 13.4632474,1.09175121 13.278113,0 L7,0 L7,18 L11.2416347,18 L11.2580911,6.11380679 L13.0436094,18 L16.0633571,18 L17.7583653,5.8517865 L17.7707076,18 L22,18 L22,0 L15.6725178,0 Z"></path><path d="M24,18 L24,0 L31.8045586,0 C33.5693522,0 35,1.41994415 35,3.17660424 L35,14.8233958 C35,16.5777858 33.5716617,18 31.8045586,18 L24,18 Z M29.8322479,3.2395236 C29.6339219,3.13233348 29.2545158,3.08072342 28.7026524,3.08072342 L28.7026524,14.8914865 C29.4312846,14.8914865 29.8796736,14.7604764 30.0478195,14.4865461 C30.2159654,14.2165858 30.3021941,13.486105 30.3021941,12.2871637 L30.3021941,5.3078959 C30.3021941,4.49404499 30.272014,3.97397442 30.2159654,3.74371416 C30.1599168,3.5134539 30.0348852,3.34671372 29.8322479,3.2395236 Z"></path><path d="M44.4299079,4.50685823 L44.749518,4.50685823 C46.5447098,4.50685823 48,5.91267586 48,7.64486762 L48,14.8619906 C48,16.5950653 46.5451816,18 44.749518,18 L44.4299079,18 C43.3314617,18 42.3602746,17.4736618 41.7718697,16.6682739 L41.4838962,17.7687785 L37,17.7687785 L37,0 L41.7843263,0 L41.7843263,5.78053556 C42.4024982,5.01015739 43.3551514,4.50685823 44.4299079,4.50685823 Z M43.4055679,13.2842155 L43.4055679,9.01907814 C43.4055679,8.31433946 43.3603268,7.85185468 43.2660746,7.63896485 C43.1718224,7.42607505 42.7955881,7.2893916 42.5316822,7.2893916 C42.267776,7.2893916 41.8607934,7.40047379 41.7816216,7.58767002 L41.7816216,9.01907814 L41.7816216,13.4207851 L41.7816216,14.8074788 C41.8721037,15.0130276 42.2602358,15.1274059 42.5316822,15.1274059 C42.8031285,15.1274059 43.1982131,15.0166981 43.281155,14.8074788 C43.3640968,14.5982595 43.4055679,14.0880581 43.4055679,13.2842155 Z"></path></g></svg>
+                <div class="IMDbHeader">
+                    <img id="IMDbIMG" src="IMDb.png">
+                </div>
+            </div>
+            <div class="image-divider" style="background-image:url('Poirot_S05_EP03_landscape_thumb.jpg')"></div>
+            <img id="YIIMG" src="Untitled-5.png">
+        </div>
+        <div id="lit-art">
+            <style>
+                h1{
+                    color: #000;
+                    font-size: 50pt;
+                    font-family: 'Roboto Slab', serif;
+                    text-align: center;
+                }    
+            </style>
+            <h1>
+                Literary Article
+            </h1>
+            <div class="body-text" style="margin-top:20pt">
+                You wouldn’t steal a car. You wouldn’t steal a handbag. You wouldn’t steal a movie.  But you can, not really but it’s perfectly legal, let me elaborate. 
+                Crime fiction is a category that covers a complex range of extremely popular media genres whose sole purpose is to engulf the audience in the thrill and 
+                terror of being a criminal all while they’re sitting on a couch sipping a cuppa: I told you, perfectly legal! Detective fiction is a branch of crime fiction 
+                with ‘early ancestors emerging through the 18th and 19th centuries’ (Harcher, 2009), excellent examples of it being, Agatha Christie’s <em>Yellow Iris</em> (1937) 
+                and Sir Arthur Conan Doyle’s - who will be impolitely addressed as Doyle from now on - <em>The Final Problem</em> and was later given a BBC TV 
+                adaptation in 2017; and, although being written a long time ago, both authors' works heavily influence modern literature (Nathan, 2022) (The History Press, 
+                2022). In both Agatha Christie’s, <em>Yellow Iris</em> and <em>The Final Problem</em> - a <em>Sherlock</em> episode written by Steven Moffat and Mark Gatiss – seeking justice is a 
+                form of leisure, degenerating into vigilantism, although, Sherlock’s run-in with ‘unconditional love’ ends up clashing with his relationships, testing his 
+                mental fortitude, contrasting with Hercule Poirot, who has a ‘jolly good time’ solving a “Yellow Iris” mystery without emotional complications.
+            </div>
+            <div class="image-divider" style="background-image:url('jeremy-horvatin.jpg')"></div>
+            <style>
+            h2{
+                color: #000;
+                text-align: left;
+                margin-left: 10%;
+                font-size: 50pt;
+                font-family: 'Roboto Slab', serif;
+            }    
+            </style>
+            <h2>
+                Playing Detective
+            </h2>
+            <div class="body-text">
+                Both sleuths begin each investigation for recreational purposes, avoiding the need for authorities or legal action, both resulting in unfinished or bittersweet
+                endings. “For recreational purposes?” that’s extremely scandalous and far-fetched for a sleuth! How could I possibly reach a conclusion like that? Let's take a 
+                look at the most obvious example. In <em>Yellow Iris</em>, the detective, Hercule Poirot says it himself - within the first page of the story! Hercule Poirot is at home 
+                when a phone rings in the midst of the night; as he moves to pick-up the phone, he excitedly murmurs to himself a horrific fictional case which he pretends is 
+                the subject of the call, and, after ‘smiling at the pleasing conceit and lifting the receiver,’ he discovers that it is in fact, a new case full of serotonin, 
+                dopamine and adrenaline – whoops, I meant scandal and justice! After this, the setting is moved to Jardin des Cygnes (Fandom, 2022)(Fandom, 2022). Here, the
+                story really picks up and the suspects are brought into the picture, specifically emphasizing Mr. Barton Russell, the perpetrator, who makes the painfully 
+                indiscreet “arrangement” with the restaurant buskers which act as his window to kill his target, Pauline Weatherby. Unfortunately for Mr. Russell, his plan is 
+                foiled and mocked, afterwards; however, this is where Hercule Poirot’s fascination with ’playing detective’ really steals the show. Pauline is almost a victim 
+                of murder, and in her most agitated state, she is given the authority to make a just decision, whether or not Mr. Barton Russell is prosecuted for his crimes; 
+                obviously she makes a rushed choice and tells him to leave the country, ’she didn’t want a scandal.’ Then, Poirot makes another statement completely contradicting 
+                justice, sealing the deal for the, ”unfinished or bittersweet ending” business, “you had better go quickly [...] I advise you to be careful in future,” announcing 
+                that there will be a second chance to commit a murder. This is supported when Agatha Christie finalises the story with lyrics from a very depressing song which, 
+                paradoxically, alludes to future acts driven by the depressive power of love: I thought Pauline didn’t want a scandal?!? In <em>Sherlock</em> it’s a little more cryptic. 
+                In the beginning of the <em>Final Problem</em>, Mycroft is watching a film when text appears in front of him on screen as well as a swift change in non-diegetic sound 
+                which syncs the audience’s emotions with the fear and loss of control as Mycroft navigates his own house trying to piece together what ever he can to defend 
+                himself, locking the audience in a familiar feeling of being in a nightmare with zero control. Afterwards, Sherlock hypnotises Mycroft into leaking information 
+                about their sister, Eurus Holmes, her existence having been kept a secret from Sherlock. Mission accomplished! Now that Sherlock knows the truth, the actors and 
+                strategies to fool Mycroft are exposed, and everyone exits the scene in a very comedic way. At this moment, the emotion of the audience is replicating that of 
+                Sherlock, excitement and banter. But, wait a moment, I thought Sherlock is only just discovering that key memories of his sister had been stolen from him and 
+                she is being kept in an offshore government black-site and maximum-security facility called Sherrinford (an allusion to Sherrinford Holmes, a proposed elder 
+                brother to Sherlock and Mycroft found in Doyle’s early notes); he shouldn’t be excited! A jump cut throws the audience further into the story where Sherlock 
+                and Dr. Watson - Sherlock’s ‘partner in crime’ - are hijacking a boat to infiltrate Sherrinford. This unorthodox method must be a ’nod’ to Doyle’s profession 
+                as a surgeon onboard a whaling ship, since there was no need for Sherlock to do so, for Mycroft could have easily been granted access, he is still treated as 
+                a superior to the governor of Sherrinford. This is illustrated once Mycroft reveals the governor’s foolishness and lectures him while the camera is, not gradually 
+                zoomed in, but rather, slowly moved towards Mycroft, creating an intimidating aura which inflates and emphasizes his facial expressions as he ’rips into’ the 
+                governor for not ensuring his sister‘s safety - a different effect from if only the focal length of the lens was modulated throughout the scene. All these 
+                unorthodox events reflect the excitement of Mycroft, Watson and Sherlock whilst carrying out the mission, specifically that of Sherlock who has made his way 
+                past the guards by acting as a hunchback local, resuming his normal posture and mannerisms before completely leaving the guards’ field of view! This recklessness 
+                could have blown his cover, but it’s a technique which synchronises Mycroft and Watson’s excitement with Sherlock’s and the audience’s.  Eurus immediately acts 
+                on the trio, taunting them by kidnapping them, using quotes from dead Moriarty, and with several mini cases they must solve to save a young girl trapped on an 
+                out-of-control plane in the air. As it turns out, that girl is just a metaphor for Eurus’ mental state – yes, this is all in one episode - and after incorrectly 
+                evaluated and rushed plot point after another – caused by the BBC story writers losing track of Doyle’s original stories a few episodes ago - neither Sherlock, 
+                Dr. Watson, Mycroft nor Eurus’ life situation changes much at all after committing a multitude of crimes due to the absence of justice, leading to a very 
+                bittersweet and unfinished ’vibe’ to the <em>Final Problem. It seems that</em> the BBC directors are were more after a ‘money grab’ rather than pursuing what true 
+                classical crime fiction should deliver: satisfying, sustainable justice for those who have suffered.
+            </div>
+            <div class="image-divider" style="background-image:url('imdb.jpg')"></div>
+            <h2>
+                “Just smile and wave boys, smile and wave.”
+            </h2>
+            <div class="body-text">
+                Hercule Poirot’s ‘spot the pathetic killer’ investigation goes perfectly to plan, and this affords him to remain collected and composed; conversely, Sherlock’s 
+                confidence quickly runs out as he’s forced to face a twisted vigilante, who manipulates him into derailing major aspects of his life including delivering a fair 
+                outcome. Barton Russel’s plan is foiled and mocked when Hercule Poirot makes the horrifically ‘pregnant’ statement, ”your plan has miscarried,” a powerful metaphor 
+                at the beginning of his monologue, explaining Russell’s <em>secret plan</em>, step by step. Although in his monologue, Hercule Poirot’s explanation for his solution is 
+                significantly simpler and shorter than the explanation of Russell’s plan to murder, this is used to belittle flustered Russel which at face value, is extremely 
+                anti-climactic for such a suspenseful and cryptic introductory sentence marked by repetition and allusion, <em>“At once … it’s life or death … the Jardin des Cygnes 
+                ... at once … table with yellow irises …"</em>; it also speaks to how laid-back Poirot is during this case. The same nonchalant attitude is once again obvious when 
+                the perpetrator excuses himself and Hercule is granted a dance with Lola Valdez who had – previous to proving his intelligence – rejected the same request from 
+                Poirot. This collected and composed approach is also evident in Sherlock’s behaviour until Eurus drags him through her second ‘escape room’, which contains several 
+                clues to his task to force Molly Hooper to say that she loves him. Sherlock pieces together the puzzle and Eurus explains that a three-minute timer which is rigged 
+                to explode, destroying her house with her inside, if the task isn’t complete. His shift in attitude is immediately obvious as a low-angle, close-up camera shot 
+                stresses his regret and anxiety as he frantically tries to figure out a plan to minimize the emotional damage on Molly. During the scene, time moves slightly slower 
+                than real world time, putting the audience in a trance led by Sherlock’s anxiety. His final stretch of determination withers as Molly refuses Sherlock’s requests 
+                and she falls further out of love until the last two seconds when she gives in completely – shown by the same camera angle previously used to convey Sherlock’s 
+                anxiety, but this time it focusses on Molly’s emotionless face, depicting a final breath of unison as their friendship dies; and gives him what he wants. A quick 
+                shift in emotion from relief to self-hatred breaks Sherlock as Eurus explains that the explosives and thus, any reasoning for manipulating Molly did not exist, 
+                sending him into a mental breakdown expressed by the lack of diegetic sound as the audience is engulfed by Sherlock’s decaying mental state. His anxiety compounded 
+                by every mistake made follows Sherlock throughout the rest of the episode, causing more errors, and in the desperate attempt to maintain justice as well as a 
+                forgiving attitude towards his sister, he fails at doing both.
+            </div>
+            <div class="image-divider" style="background-image:url('campbell-jensen.jpg')"></div>
+            <h2>
+                “There's nothing like Love for making you” a bad detective.
+            </h2>
+            <div class="body-text">
+                You wouldn’t steal a car. You wouldn’t steal a handbag. You wouldn’t steal a movie.  But you do take it upon yourself who lives and dies, and you would enjoy - 
+                a little bit too much - the process of doing so. At least that’s what Sherlock Holmes and Hercule Poirot seem to be doing, and it’s part of the excitement that 
+                these two stories offer their readers. Ultimately, no matter how tortured and imperfect, justice is, at least partially, delivered, but, the struggles, twists and 
+                turns of the investigation and the laws that are broken in an attempt to uphold the law, creates excitement and engagement which keep the readers on the edge of 
+                their seats - that’s the power of crime fiction, and I dare say, this mix of putting the world to right and the imperfect means to do so will continue to attract 
+                and intoxicate readers for many more years to come!
+            </div>
+            <div class="image-divider" style="background-image:url('campbell-jensen.jpg')"></div>
+            <h2>
+                References
+            </h2>
+            <div class="body-text">
+                Arthur Conan Doyle - The Official Site of the Sir Arthur Conan Doyle Literary Estate. (2022, 3 17). BIOGRAPHY. Retrieved from Arthur Conan Doyle - The Official Site of the Sir Arthur Conan Doyle Literary Estate: https://www.arthurconandoyle.com/biography.html<br><br>
+                Devdiscourse News Desk. (2022, 3 11). Is Sherlock Season 5 still on the cards? Current status & more details! Retrieved from Devdiscourse: https://www.devdiscourse.com/article/entertainment/1859950-is-sherlock-season-5-still-on-the-cards-current-status-more-details#:~:text=According%20to%20several%20reports%2C%20the,on%20Sherlock%2C%22%20he%20said.<br><br>
+                Fandom. (2022, 3 10). Jardin des Cygnes. Retrieved from Fandom: https://agathachristie.fandom.com/wiki/Jardin_des_Cygnes<br><br>
+                Harcher, C. (2009). The development of crime fiction. GRIN Verlag.<br><br>
+                IMDb. (2022, 3 17). Mark Gatiss. Retrieved from IMDb: https://www.imdb.com/name/nm0309693/?ref_=tt_ov_wr<br><br>
+                IMDb. (2022, 3 17). Sherlock. Retrieved from IMDb: https://www.imdb.com/title/tt1475582/<br><br>
+                IMDb. (2022, 3 17). Steven Moffat. Retrieved from IMDb: https://www.imdb.com/name/nm0595590/?ref_=tt_ov_wr<br><br>
+                Nathan, R. (2022, 2 28). Ultra-Influencers: The Two British Fictional Victorians that Changed Japan. Retrieved from Red Circle: https://www.redcircleauthors.com/news-and-views/ultra-influencers-the-two-british-fictional-victorians-that-changed-japan/<br><br>
+                Romano, A. (2022, 3 11). 5 mistakes Sherlock made in its journey from high entertainment to convoluted spectacle. Retrieved from Vox: https://www.vox.com/culture/2017/1/18/14295716/sherlock-season-four-review-plot-holes<br><br>
+                The History Press. (2022, 2 28). Queen of Crime: Agatha’s influence. Retrieved from The History Press: https://www.thehistorypress.co.uk/articles/queen-of-crime-agatha-s-influence/<br><br>
+                
+                
+            </div>
+        </div>
+        <div id="abt-aut">
+            <style>
+                div#abt-aut{
+                    display: none;
+                }
+                div.lazyimg{
+                    text-align: center;
+                    display: block;
+                    margin-bottom: 50pt;
+                }
+            </style>
+            <h1>
+                About Creators
+            </h1>
+            <div class="image-divider" style="background-image:url('wp7504174.jpg')"></div>
+            <h2>
+                Agatha Christie
+            </h2>
+            <div class="lazyimg">
+                <img src="chistie.png">
+            </div> 
+            <div class="image-divider" style="background-image:url('journal.jpg')"></div>
+            <h2>
+                Arthur Conan Doyle
+            </h2>
+            <div class="lazyimg">
+                <img src="authurconandoyle.png">
+            </div> 
+            <div class="image-divider" style="background-image:url('steven-moffat-1562690025.jpg')"></div>
+            <h2>
+                Steven Moffat
+            </h2>
+            <div class="lazyimg">
+                <img src="stevenmoffat.png">
+            </div> 
+            <div class="image-divider" style="background-image:url('mark-gatiss-in-a-christmas-carol-143364.jpg')"></div>
+            <h2>
+                Mark Gatiss
+            </h2>
+            <div class="lazyimg">
+                <img src="markgatiss.png">
+            </div> 
+        </div>
+        <div id="abt-me">
+            <style>
+                div#abt-me{
+                    display: none;
+                }
+            </style>
+            <h1>
+                About Me
+            </h1>
+        </div>
+    </body>
+</html>
