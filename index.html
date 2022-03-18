@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>IA1 Literary Article</title>
-        <link href="IMDBstyle.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
@@ -35,6 +34,10 @@
             </style>
         </div>
         <script>
+            $(window).on('onbeforeunload', function(){
+                window.scrollTo(0, 0);
+            });
+
             window.addEventListener('resize', resizeevent);
             let js_scrollbar = document.getElementById("svg-scrollbar").getBoundingClientRect().height;
             let js_scrolltrack = document.getElementById("js-scrollbar").getBoundingClientRect().height - js_scrollbar;
@@ -48,9 +51,22 @@
                 //if (document.getElementById("title").getBoundingClientRect().bottom > 0){
                     let scrollY = window.scrollY;
                     let title = document.getElementById("title");
-                    title.style.opacity = (100 - (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 100).toString() + '%';
-                    title.style.marginLeft = (10 + (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 90).toString() + '%';
-                    title.style.marginRight = (10 - (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 90).toString() + '%';
+                    let meth = scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)
+                    if (meth <= 1.0){
+                        title.style.opacity = (100 - (meth) * 100).toString() + '%';
+                        title.style.marginLeft = (10 + (meth) * 90).toString() + '%';
+                        title.style.marginRight = (10 - (meth) * 90).toString() + '%';
+                        if (meth <= 0.5){
+                            document.getElementById("svg-scrollbar").style.opacity = ((meth) * 100) + '%';
+                        }
+                        else {
+                            document.getElementById("svg-scrollbar").style.opacity = "100%";
+                        }
+                    }
+                    else {
+                        document.getElementById("svg-scrollbar").style.opacity = "100%";
+                        title.style.opacity = "0%";
+                    }
                     console.log("scrolling...");
                 //}
                 var pageHeight = 0;
