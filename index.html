@@ -38,31 +38,34 @@
             window.addEventListener('resize', resizeevent);
             let js_scrollbar = document.getElementById("svg-scrollbar").getBoundingClientRect().height;
             let js_scrolltrack = document.getElementById("js-scrollbar").getBoundingClientRect().height - js_scrollbar;
-            var pageHeight = 0;
             function resizeevent(){
                 js_scrollbar = document.getElementById("svg-scrollbar").getBoundingClientRect().height;
                 js_scrolltrack = document.getElementById("js-scrollbar").getBoundingClientRect().height - js_scrollbar;
-
-                let nodesList = document.documentElement.childNodes
-                for (var i = nodesList.length - 1; i >= 0; i--) {
-                    if (nodesList[i].scrollHeight && nodesList[i].clientHeight) {
-                        var elHeight = Math.max(nodesList[i].scrollHeight, nodesList[i].clientHeight);
-                        pageHeight = Math.max(elHeight, pageHeight);
-                    }
-                    if (nodesList[i].childNodes.length) findHighestNode(nodesList[i].childNodes);
-                }
             }
 
             window.addEventListener('scroll', scrollevent);
             function scrollevent(){
                 //if (document.getElementById("title").getBoundingClientRect().bottom > 0){
-                let scrollY = window.scrollY;
-                let title = document.getElementById("title");
-                title.style.opacity = (100 - (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 100).toString() + '%';
-                title.style.marginLeft = (10 + (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 90).toString() + '%';
-                title.style.marginRight = (10 - (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 90).toString() + '%';
-                console.log("scrolling...");
+                    let scrollY = window.scrollY;
+                    let title = document.getElementById("title");
+                    title.style.opacity = (100 - (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 100).toString() + '%';
+                    title.style.marginLeft = (10 + (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 90).toString() + '%';
+                    title.style.marginRight = (10 - (scrollY / (window.innerHeight - title.getBoundingClientRect().bottom)) * 90).toString() + '%';
+                    console.log("scrolling...");
                 //}
+                var pageHeight = 0;
+
+                function findHighestNode(nodesList) {
+                    for (var i = nodesList.length - 1; i >= 0; i--) {
+                        if (nodesList[i].scrollHeight && nodesList[i].clientHeight) {
+                            var elHeight = Math.max(nodesList[i].scrollHeight, nodesList[i].clientHeight);
+                            pageHeight = Math.max(elHeight, pageHeight);
+                        }
+                        if (nodesList[i].childNodes.length) findHighestNode(nodesList[i].childNodes);
+                    }
+                }
+
+                findHighestNode(document.documentElement.childNodes);
 
                 document.getElementById("svg-scrollbar").style.top = (scrollY / (pageHeight - window.innerHeight)) * 88 + "vh";
             }
